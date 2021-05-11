@@ -1,0 +1,7 @@
+# PostgreSQL
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=begameshopapp
+POSTGRES_USER=suTESZKVwMYulTtLlHjmjEUYkhLsZUFH
+POSTGRES_PASSWORD=47LU8RWLiLwoYFYmp9TVmsqEj3tF1iyG9OmSjdKoj2L81w57adNOYNZYtIM4Gp3g
