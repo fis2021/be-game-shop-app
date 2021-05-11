@@ -1,22 +1,26 @@
 from django.contrib.auth.models import AbstractUser
-from django.db.models import CharField
-from django.urls import reverse
-from django.utils.translation import gettext_lazy as _
+from django.db import models
 
 
 class User(AbstractUser):
     """Default user for beGameShopApp."""
 
-    #: First and last name do not cover name patterns around the globe
-    name = CharField(_("Name of User"), blank=True, max_length=255)
-    first_name = None  # type: ignore
-    last_name = None  # type: ignore
+    name = models.CharField(blank=True, max_length=256)
+    email = models.EmailField(blank=True, max_length=256)
 
-    def get_absolute_url(self):
-        """Get url for user's detail view.
+    class UserTypes(models.IntegerChoices):
+        CUSTOMER = 0, 'customer'
+        SELLER = 1, 'seller'
 
-        Returns:
-            str: URL for user detail.
+    user_type = models.SmallIntegerField(choices=UserTypes.choices, default=UserTypes.CUSTOMER)
 
-        """
-        return reverse("users:detail", kwargs={"username": self.username})
+    def __str__(self):
+        return self.username
+
+    @property
+    def is_customer(self):
+        return self.user_type == self.UserTypes.CUSTOMER
+
+    @property
+    def is_seller(self):
+        return self.user_type == self.UserTypes.SELLER
