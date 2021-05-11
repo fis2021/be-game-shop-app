@@ -7,3 +7,8 @@ class Game(models.Model):
     key = models.CharField(blank=False, max_length=64)
     seller = models.ForeignKey('users.User', on_delete=models.CASCADE, related_name='products')
     owners = models.ForeignKey('users.User', on_delete=models.CASCADE, related_name='owned_games')
+
+
+class Category(models.Model):
+    name = models.CharField(blank=False, max_length=64)
+    games = models.ForeignKey('.Game', on_delete=models.CASCADE, related_name='categories')
