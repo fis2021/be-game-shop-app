@@ -13,4 +13,4 @@ class Game(models.Model):
 
 class Category(models.Model):
     name = models.CharField(blank=False, max_length=64)
-    games = models.ForeignKey('.Game', on_delete=models.CASCADE, related_name='categories')
+    games = models.ForeignKey('games.Game', on_delete=models.CASCADE, related_name='categories')
