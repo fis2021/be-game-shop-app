@@ -1,6 +1,8 @@
 """
 Base settings to build other settings files upon.
 """
+import datetime
+
 from pathlib import Path
 
 import environ
@@ -275,10 +277,20 @@ SOCIALACCOUNT_ADAPTER = "begameshopapp.users.adapters.SocialAccountAdapter"
 # django-rest-framework - https://www.django-rest-framework.org/api-guide/settings/
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_jwt.authentication.JSONWebTokenAuthentication",
         "rest_framework.authentication.SessionAuthentication",
         "rest_framework.authentication.TokenAuthentication",
     ),
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+}
+
+# django-rest-framework-jwt
+# -------------------------------------------------------------------------------
+# django-rest-framework-jwt - https://jpadilla.github.io/django-rest-framework-jwt
+JWT_AUTH = {
+    'JWT_ALLOW_REFRESH': True,
+    'JWT_PAYLOAD_HANDLER': 'begameshopapp.utils.jwt.payload_handler',
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=7200),
 }
 
 # django-cors-headers - https://github.com/adamchainz/django-cors-headers#setup
