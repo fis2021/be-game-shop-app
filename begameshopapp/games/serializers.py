@@ -10,11 +10,11 @@ class GameSerializer(serializers.ModelSerializer):
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
-        model = Game
+        model = Category
         fields = '__all__'
 
 
 class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Game
+        model = Review
         fields = '__all__'
