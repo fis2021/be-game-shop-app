@@ -150,6 +150,9 @@ typings/
 .nfs*
 
 
+### Webstorm
+.idea
+
 ### VisualStudioCode template
 .vscode/*
 !.vscode/settings.json
