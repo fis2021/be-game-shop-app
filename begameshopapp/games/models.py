@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.utils.crypto import get_random_string
 
 # Create your models here.
 
@@ -11,6 +12,11 @@ class Game(models.Model):
     owners = models.ForeignKey('users.User', on_delete=models.CASCADE, related_name='owned_games')
 
     description = models.CharField(blank=True, max_length=512)
+
+    def save(self, *args, **kwargs):
+        if not self.key:
+            self.key = get_random_string(length=64)
+        super().save(*args, **kwargs)
 
 
 class Category(models.Model):
