@@ -1,7 +1,7 @@
 from django.conf import settings
 from rest_framework.routers import DefaultRouter, SimpleRouter
 
-from begameshopapp.users.api.views import UserViewSet
+from begameshopapp.users.views import UserViewSet
 from begameshopapp.games.views import *
 
 if settings.DEBUG:
